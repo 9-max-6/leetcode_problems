@@ -72,3 +72,32 @@ var minOperations = function (boxes) {
  * I will also need to push every new value to an array in the order
  * of the boxes.
  */
+
+/**
+ * SOLUTION
+ */
+
+class Solution {
+  minOperations(boxes) {
+    let pos = [],
+      ans = [];
+    let len = boxes.length;
+
+    for (let i = 0; i < len; i++) if (boxes[i] === '1') pos.push(i);
+
+    for (let i = 0; i < len; i++) {
+      let sum = 0;
+      for (let idx of pos) {
+        let dst = Math.abs(i - idx);
+        sum += dst;
+      }
+      ans.push(sum);
+    }
+    return ans;
+  }
+}
+
+/**
+ * so I had the right idea, that the answer lies in summing up the differences in the positions but
+ * my solution is taking too long.
+ */
